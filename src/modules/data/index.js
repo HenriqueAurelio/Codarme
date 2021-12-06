@@ -12,7 +12,7 @@ prisma.users
   .catch((err) => console.log(err));
 
 // try {
-//   await prisma.users.findMany({
+//   const docs = await prisma.users.findMany({
 //     where: {
 //       email: 'henrique@dev.com',
 //     },
