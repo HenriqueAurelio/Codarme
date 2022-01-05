@@ -31,7 +31,14 @@ export const list = async (ctx) => {
 
 export const create = async (ctx) => {
   try {
-    const user = await prisma.user.create({ data: ctx.request.body })
+    const hashedPassword = ctx.request.body.password
+    const user = await prisma.user.create({
+      data: {
+        name: ctx.request.body.name,
+        email: ctx.request.body.email,
+        password: hashedPassword,
+      },
+    })
     ctx.body = user
   } catch (error) {
     ctx.status = 500
