@@ -11,4 +11,4 @@ router.put('/users/:id', users.update)
 router.delete('/users/:id', users.remove)
 
 //Auth
-router.post('/login', users.login)
+router.get('/login', users.login)
