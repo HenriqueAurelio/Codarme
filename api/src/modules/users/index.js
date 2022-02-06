@@ -2,6 +2,7 @@ import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 
 import { prisma } from '~/data'
+
 import { decodeBasicToken } from '~/modules/users/services'
 
 export const login = async (ctx) => {
@@ -9,13 +10,6 @@ export const login = async (ctx) => {
     const [email, password] = decodeBasicToken(
       ctx.request.headers.authorization
     )
-  } catch (error) {
-    ctx.status = 400
-    console.log(error)
-    return
-  }
-
-  try {
     const user = await prisma.user.findUnique({
       where: { email },
     })
@@ -30,6 +24,10 @@ export const login = async (ctx) => {
     const token = jwt.sign({ sub: user.id }, process.env.JWT_SECRET)
     ctx.body = { user, token }
   } catch (error) {
+    if (error.custom) {
+      ctx.status = 400
+      return
+    }
     ctx.status = 500
     ctx.body = 'Ops! Algo deu errado, tente novamente'
   }
