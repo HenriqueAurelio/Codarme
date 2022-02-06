@@ -1,9 +1,9 @@
 import { decodeBasicToken } from '~/modules/users/services'
 
-describe('User module', () => {
+describe('User services', () => {
   it('should return credentials by basic authentication token', () => {
     //preparação
-    const email = 'henrique@gmail.com'
+    const email = 'henrique@dev.com'
     const password = '123456'
     const token = Buffer.from(`${email}:${password}`, 'utf8').toString('base64')
 

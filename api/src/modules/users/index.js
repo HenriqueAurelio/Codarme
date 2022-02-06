@@ -10,13 +10,19 @@ export const login = async (ctx) => {
     const [email, password] = decodeBasicToken(
       ctx.request.headers.authorization
     )
+
     const user = await prisma.user.findUnique({
       where: { email },
     })
 
+    if (!user) {
+      ctx.status = 404
+      return
+    }
+
     const passwordEqual = await bcrypt.compare(password, user.password)
 
-    if (!user || !passwordEqual) {
+    if (!passwordEqual) {
       ctx.status = 404
       return
     }
