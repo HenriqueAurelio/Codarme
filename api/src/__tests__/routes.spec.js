@@ -1,3 +1,5 @@
+process.env.DB_URL = `${process.env.DB_URL}_tesdb?schema=test_schema`
+
 import bcrypt from 'bcrypt'
 import request from 'supertest'
 
@@ -42,7 +44,6 @@ describe('User routes', () => {
     //execucao
     const result = await request(server).get('/login').auth(email, password)
     //expectativa
-    console.log(result.body)
     expect(result.status).toBe(200)
     expect(result.body).toBeTruthy()
     expect(result.body.user.id).toBeTruthy()
