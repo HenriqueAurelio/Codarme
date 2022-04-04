@@ -1,5 +1,3 @@
-process.env.DB_URL = `${process.env.DB_URL}_tesdb?schema=test_schema`
-
 import bcrypt from 'bcrypt'
 import request from 'supertest'
 
