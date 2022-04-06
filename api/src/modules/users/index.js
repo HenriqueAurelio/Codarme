@@ -11,6 +11,7 @@ export const login = async (ctx) => {
     const user = await prisma.user.findUnique({
       where: { email, password },
     })
+
     if (!user) {
       ctx.status = 404
       return

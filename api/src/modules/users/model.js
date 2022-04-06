@@ -1,11 +1,12 @@
 import bcrypt from 'bcrypt'
 import { prisma } from '~/data'
 
-const omit = (keys, obj) => {
-  Object.keys(obj).reduce((acc, current) =>
-    keys.includes(current) ? acc : { ...acc, [current]: obj[current] }
+const omit = (keys, obj) =>
+  Object.keys(obj).reduce(
+    (acc, current) =>
+      keys.includes(current) ? acc : { ...acc, [current]: obj[current] },
+    {}
   )
-}
 
 const passwordCheck = async (params, next) => {
   const { password: passwordPlainText, ...where } = params.args.where
@@ -13,12 +14,13 @@ const passwordCheck = async (params, next) => {
   if (!result) {
     return result
   }
+
   const passwordEqual = await bcrypt.compare(passwordPlainText, result.password)
-  if (!passwordEqual) return false
+  if (!passwordEqual) {
+    return false
+  }
   return result
 }
-
-const removeField = () => {}
 
 prisma.$use(async (params, next) => {
   if (params.model !== 'User') {
@@ -27,7 +29,6 @@ prisma.$use(async (params, next) => {
   if (params.action !== 'findUnique') {
     return next(params, next)
   }
-
   const result = params.args.where.password
     ? await passwordCheck(params, next)
     : await next(params, next)
