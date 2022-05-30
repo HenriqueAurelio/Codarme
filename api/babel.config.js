@@ -1,15 +1,15 @@
 module.exports = {
-  presets: [['@babel/preset-env', { targets: { node: 'current' } }]],
+  presets: [["@babel/preset-env", { targets: { node: "current" } }]],
   plugins: [
-    '@babel/plugin-proposal-optional-chaining',
+    "@babel/plugin-proposal-optional-chaining",
     [
-      'module-resolver',
+      "module-resolver",
       {
         alias: {
-          '~': './src',
-          '@': '.',
+          "~": "./src",
+          "@": ".",
         },
       },
     ],
   ],
-}
+};

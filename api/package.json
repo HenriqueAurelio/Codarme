@@ -56,11 +56,13 @@
     "@koa/router": "^10.1.1",
     "@prisma/client": "^3.5.0",
     "bcrypt": "^5.0.1",
+    "caniuse-lite": "^1.0.30001344",
     "dotenv": "^10.0.0",
     "dotenv-safe": "^8.2.0",
     "jsonwebtoken": "^8.5.1",
     "koa": "^2.13.4",
     "koa-bodyparser": "^4.3.0",
-    "prisma": "^3.5.0"
+    "prisma": "^3.5.0",
+    "ramda": "^0.28.0"
   }
 }
