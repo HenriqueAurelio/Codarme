@@ -2,11 +2,12 @@ const baseColors = {
   black: '#0000',
   red: '#FF647C',
   blue: '#487FD9',
+  green: '#0BD9B3',
   yellow: '#EBC455',
 }
 const brandColors = {
   raisinBlack: '#16171C',
-  caribbeanGreen: '#0BD9B3',
+  caribbeanGreen: baseColors.green,
 }
 
 const colors = {
@@ -14,6 +15,11 @@ const colors = {
   ...brandColors,
 }
 
+const fontSizes = [10, 12, 14, 16, 18, 21]
+const spaces = [4, 8, 12, 16, 20, 24, 28, 32]
+
 export const definitions = {
   colors,
+  fontSizes,
+  spaces,
 }
