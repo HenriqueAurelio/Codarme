@@ -6,3 +6,11 @@ export const color = props =>
 
 export const fontSize = props =>
   props.fontSize && `font-size: ${props.theme.fontSizes[props.fontSize]};`
+
+export const theme = prop => value => props => props.theme[prop][value] || value
+
+export const th = {
+  space: theme('spaces'),
+  size: theme('fontSizes'),
+  color: theme('colors'),
+}
