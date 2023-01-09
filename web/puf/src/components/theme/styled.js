@@ -10,10 +10,16 @@ export const flexbox = props => {
   const direction =
     typeof props.flexbox === Boolean ? props.flexDirection : props.flexbox
 
+  const justifyContent = props.justifyContent || (props.center && 'center')
+  const alignItems = props.alignItems || (props.center && 'center')
+
   return `
-  ${(props.flexbox && 'display: flex;') || ''}
-  ${(direction && `flex-direction: ${direction}`) || ''}
-`
+    ${(props.flex && `flex: ${props.flex};`) || ''}
+    ${(props.flexbox && 'display: flex;') || ''}
+    ${(direction && `flex-direction: ${direction};`) || ''}
+    ${(justifyContent && `justify-content: ${justifyContent};`) || ''}
+    ${(alignItems && `align-items: ${alignItems};`) || ''}
+  `
 }
 
 export const background = props =>
@@ -23,7 +29,7 @@ export const color = props =>
   props.color && `color: ${props.theme.colors[props.color] || props.color}; `
 
 export const fontSize = props =>
-  props.fontSize && `font - size: ${props.theme.fontSizes[props.fontSize]}; `
+  props.fontSize && `font-size: ${props.theme.fontSizes[props.fontSize]}; `
 
 export const padding = props => {
   const pb = props.pb || props.py || props.p || ''

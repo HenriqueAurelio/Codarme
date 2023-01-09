@@ -30,4 +30,8 @@ export const GlobalStyle = createGlobalStyle`
       monospace;
   }
 
+  input {
+    font-size: inherit;
+    outline: none;
+  }
 `
