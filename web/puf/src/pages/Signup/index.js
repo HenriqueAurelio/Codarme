@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { Box, Field } from '~/components'
+import { Box, Field, Button } from '~/components'
 
 export const Signup = () => {
   return (
@@ -7,7 +7,10 @@ export const Signup = () => {
       <Box style={{ width: 380 }}>
         <Field mb={3} type="text" name="name" label="Nome" />
         <Field mb={3} type="text" name="email" label="E-mail" />
-        <Field type="password" name="password" label="Senha" />
+        <Field mb={3} type="password" name="password" label="Senha" />
+        <Box flexbox center>
+          <Button>Registrar</Button>
+        </Box>
       </Box>
     </Box>
   )
