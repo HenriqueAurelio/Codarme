@@ -8,7 +8,7 @@ export const th = {
 
 export const flexbox = props => {
   const direction =
-    typeof props.flexbox !== Boolean ? props.flexDirection : props.flexbox
+    typeof props.flexbox === Boolean ? props.flexDirection : props.flexbox
 
   return `
   ${(props.flexbox && 'display: flex;') || ''}

@@ -35,19 +35,19 @@ const Box = styled('div')`
   ${flexbox}
 `
 
+const Field = ({ type, name, label, ...props }) => (
+  <Box {...props} flexbox="column">
+    <Label htmlFor={name}>{label}</Label>
+    <Input type={type} name={name} id={name} />
+  </Box>
+)
+
 export const Signup = () => {
   return (
     <Main>
       <Form>
-        <Box mb={3} flexbox="column">
-          <Label htmlFor="name">Nome</Label>
-          <Input type="text" name="name" id="name" />
-        </Box>
-
-        <Box mb={3} flexbox="column">
-          <Label htmlFor="email">Email</Label>
-          <Input type="text" name="email" id="email" />
-        </Box>
+        <Field mb={3} type="text" name="name" label="Nome" />
+        <Field mb={3} type="text" name="email" label="E-mail" />
       </Form>
     </Main>
   )
