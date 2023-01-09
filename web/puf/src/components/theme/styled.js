@@ -6,14 +6,24 @@ export const th = {
   color: theme('colors'),
 }
 
+export const flexbox = props => {
+  const direction =
+    typeof props.flexbox !== Boolean ? props.flexDirection : props.flexbox
+
+  return `
+  ${(props.flexbox && 'display: flex;') || ''}
+  ${(direction && `flex-direction: ${direction}`) || ''}
+`
+}
+
 export const background = props =>
-  props.bg && `background: ${props.theme.colors[props.bg]};`
+  props.bg && `background: ${props.theme.colors[props.bg]}; `
 
 export const color = props =>
-  props.color && `color: ${props.theme.colors[props.color] || props.color};`
+  props.color && `color: ${props.theme.colors[props.color] || props.color}; `
 
 export const fontSize = props =>
-  props.fontSize && `font-size: ${props.theme.fontSizes[props.fontSize]};`
+  props.fontSize && `font - size: ${props.theme.fontSizes[props.fontSize]}; `
 
 export const padding = props => {
   const pb = props.pb || props.py || props.p || ''
@@ -26,7 +36,7 @@ export const padding = props => {
   ${pt && `padding-top : ${props.theme.spaces[pt]}px;`}
   ${pl && `padding-left : ${props.theme.spaces[pl]}px;`}
   ${pr && `padding-right : ${props.theme.spaces[pr]}px;`}
-  `
+`
 }
 
 export const margin = props => {
@@ -40,5 +50,5 @@ export const margin = props => {
   ${mt && `margin-top : ${props.theme.spaces[mt]}px;`}
   ${ml && `margin-left : ${props.theme.spaces[ml]}px;`}
   ${mr && `margin-right : ${props.theme.spaces[mr]}px;`}
-  `
+`
 }
