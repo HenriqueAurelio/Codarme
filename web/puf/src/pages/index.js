@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { Signup } from './Signup'
-import { Theme } from '~/components/Theme'
+import { Theme } from '~/components'
 
 export const App = () => {
   return (
