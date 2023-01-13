@@ -1,5 +1,4 @@
 import * as React from 'react'
-import axios from 'axios'
 import * as yup from 'yup'
 import { useFormik } from 'formik'
 import styled from 'styled-components'
@@ -14,17 +13,8 @@ const validationSchema = yup.object().shape({
   password: yup.string().required('O campo senha é obrigatório'),
 })
 
-export const RegisterForm = () => {
-  const onSubmit = async (values) => {
-    try {
-      await axios.get('http://localhost:9901/login', {
-        auth: values,
-      })
-    }
-    catch (error) {
-      console.log(error)
-    }
-  }
+export const Form = ({ onSubmit }) => {
+
 
   const { values, errors, touched, handleChange, handleBlur, isSubmitting, handleSubmit } = useFormik({
     onSubmit,
