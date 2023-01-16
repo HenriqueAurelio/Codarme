@@ -3,10 +3,12 @@ import axios from 'axios'
 import * as yup from 'yup'
 import { useFormik } from 'formik'
 import styled from 'styled-components'
+import { Link as RouterLink } from "react-router-dom"
+
 
 import { Box, Field, Button } from '~/components'
 
-const Link = styled(Box)`
+const Link = styled(RouterLink)`
   text-decoration: none;
 `
 const validationSchema = yup.object().shape({
@@ -75,7 +77,7 @@ export const RegisterForm = () => {
       />
       <Box flexbox="column" center>
         <Button type="submit" loading={isSubmitting}>Registrar</Button>
-        <Link as="a" href="#" mt={3} fontSize={1} color="gray" fontWeight="bold">
+        <Link as="a" to="/" mt={3} fontSize={1} color="gray" fontWeight="bold">
           Já sou cadastrado !
         </Link>
       </Box>

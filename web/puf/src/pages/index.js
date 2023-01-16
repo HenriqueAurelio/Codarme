@@ -1,9 +1,9 @@
 import * as React from 'react'
 import { useState, useEffect } from 'react'
-// import { Signup } from './Signup'
+import { Signup } from './Signup'
 import { Login } from './Login'
 import { Theme } from '~/components'
-
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 
 const Dashboard = ({ onLogout }) => {
 
@@ -21,11 +21,21 @@ export const App = () => {
   useEffect(() => {
     window.localStorage.setItem('auth', state && JSON.stringify(state))
   }, [state])
+
   return (
     <Theme>
-      {state?.user ? <Dashboard onLogout={logout} /> : <Login onSuccess={setState} />}
-      {/* <Signup /> */}
-      {/* <Login /> */}
-    </Theme>
+
+      <Router>
+        <Routes>
+          {state?.user ?
+            (<Route path="/" exact element={<Dashboard onLogout={logout} />
+            } />) : (
+              <>
+                <Route path="/" exact element={<Login onSuccess={setState} />} />
+                <Route path="/signup" element={<Signup />} />
+              </>)}
+        </Routes>
+      </Router>
+    </Theme >
   )
 }

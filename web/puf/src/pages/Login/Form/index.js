@@ -2,11 +2,17 @@ import * as React from 'react'
 import * as yup from 'yup'
 import { useFormik } from 'formik'
 import styled from 'styled-components'
+import { Link as RouterLink } from "react-router-dom"
 
 import { Box, Field, Button } from '~/components'
 
-const Link = styled(Box)`
+const Link = styled(RouterLink)`
+  color:gray;
   text-decoration: none;
+  &:focus, &:hover, &:visited, &:link, &:active {
+    text-decoration: none;
+  }
+  font-weight: bold;
 `
 const validationSchema = yup.object().shape({
   username: yup.string().required('O campo e-mail é obrigatório').email('E-mail é inválido'),
@@ -54,7 +60,7 @@ export const Form = ({ onSubmit }) => {
         <Button type="submit" loading={isSubmitting}>Entrar</Button>
         <Box mt={3} fontSize={1} color="gray">
           Nao possui cadastro?{' '}
-          <Link as="a" href="#" color="gray" fontWeight="bold">
+          <Link to="/signup">
             Cadastre-se
           </Link>
         </Box>
