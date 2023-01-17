@@ -4,6 +4,7 @@ import axios from 'axios'
 
 
 import { Box, font, Logo } from '~/components'
+import { useAuth } from '~/components/modules'
 import { ReactComponent as Register } from './register.svg'
 import { Form } from './Form'
 
@@ -18,15 +19,17 @@ const CenteredBox = ({ children, ...props }) => (
   </Box>
 )
 
-export const Login = ({ onSuccess }) => {
+export const Login = () => {
+  const [, { login: setAuth }] = useAuth()
+
   const onSubmit = async (values) => {
     try {
 
       const result = await axios.get('http://localhost:9901/login', {
         auth: values,
       })
-
-      onSuccess(result.data)
+      console.log(result.data)
+      setAuth(result.data)
     }
     catch (error) {
       console.log(error)

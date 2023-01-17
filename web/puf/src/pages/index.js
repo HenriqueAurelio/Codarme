@@ -1,41 +1,25 @@
 import * as React from 'react'
-import { useState, useEffect } from 'react'
 import { Signup } from './Signup'
 import { Login } from './Login'
-import { Theme } from '~/components'
+import { useAuth } from '~/components/modules'
+
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-
-const Dashboard = ({ onLogout }) => {
-
-  return (<div>Estou logado ! <button onClick={onLogout}>Sair</button></div>)
-}
+import { Dashboard } from './Dashboard'
 
 export const App = () => {
-  const [state, setState] = useState(() => {
-    const data = window.localStorage.getItem('auth')
-    return data && JSON.parse(data)
-  })
-
-  const logout = () => setState(false)
-
-  useEffect(() => {
-    window.localStorage.setItem('auth', state && JSON.stringify(state))
-  }, [state])
-
+  const [auth] = useAuth()
   return (
-    <Theme>
 
-      <Router>
-        <Routes>
-          {state?.user ?
-            (<Route path="/" exact element={<Dashboard onLogout={logout} />
-            } />) : (
-              <>
-                <Route path="/" exact element={<Login onSuccess={setState} />} />
-                <Route path="/signup" element={<Signup />} />
-              </>)}
-        </Routes>
-      </Router>
-    </Theme >
+    <Router>
+      <Routes>
+        {auth?.user ?
+          (<Route path="/" exact element={<Dashboard />
+          } />) : (
+            <>
+              <Route path="/" exact element={<Login />} />
+              <Route path="/signup" element={<Signup />} />
+            </>)}
+      </Routes>
+    </Router>
   )
 }
