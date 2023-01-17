@@ -28,7 +28,6 @@ export const Login = () => {
       const result = await axios.get('http://localhost:9901/login', {
         auth: values,
       })
-      console.log(result.data)
       setAuth(result.data)
     }
     catch (error) {

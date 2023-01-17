@@ -1,9 +1,13 @@
 import * as React from 'react'
 import styled from 'styled-components'
+import axios from 'axios'
+// import { useHistory } from 'react-router-dom'
 
 import { Box, font, Logo } from '~/components'
+import { useAuth } from '~/components/modules'
 import { ReactComponent as Register } from './register.svg'
 import { RegisterForm } from './Form'
+
 
 const Title = styled("h2")`
   ${font}
@@ -17,6 +21,19 @@ const CenteredBox = ({ children, ...props }) => (
 )
 
 export const Signup = () => {
+  // const history = useHistory()
+  const [, { login: setAuth }] = useAuth()
+  const onSubmit = async (values) => {
+    try {
+      const res = await axios.post('http://localhost:9901/users', values)
+      setAuth({ user: res.data })
+      // history.replace('/dashboard')
+
+    }
+    catch (error) {
+      console.log(error)
+    }
+  }
 
   return (
     <Box flex={1} flexbox>
@@ -28,7 +45,7 @@ export const Signup = () => {
         <Title textAlign="center">
           Cadastro
         </Title>
-        <RegisterForm />
+        <RegisterForm onSubmit={onSubmit} />
       </CenteredBox>
     </Box>
   )

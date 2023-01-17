@@ -1,5 +1,4 @@
 import * as React from 'react'
-import axios from 'axios'
 import * as yup from 'yup'
 import { useFormik } from 'formik'
 import styled from 'styled-components'
@@ -20,15 +19,7 @@ const validationSchema = yup.object().shape({
 
 })
 
-export const RegisterForm = () => {
-  const onSubmit = async () => {
-    try {
-      await axios.post('http://localhost:9901/users', values)
-    }
-    catch (error) {
-      console.log(error)
-    }
-  }
+export const RegisterForm = ({ onSubmit }) => {
 
   const { values, errors, touched, handleChange, handleBlur, isSubmitting, handleSubmit } = useFormik({
     onSubmit,
