@@ -11,6 +11,7 @@ const StyledButton = styled('button')`
   padding: ${th.space(2)}px ${th.space(8)}px;
   font-size: inherit;
   outline: none;
+  cursor: pointer;
 
   ${padding}
   ${margin}
