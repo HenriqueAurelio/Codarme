@@ -29,7 +29,7 @@ export const Login = () => {
         auth: values,
       })
       setAuth(result.data)
-      navigate()
+      navigate('/dashboard')
     }
     catch (error) {
       console.log(error)
