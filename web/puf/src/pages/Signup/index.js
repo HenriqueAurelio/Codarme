@@ -1,7 +1,7 @@
 import * as React from 'react'
 import styled from 'styled-components'
 import axios from 'axios'
-// import { useHistory } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 import { Box, font, Logo } from '~/components'
 import { useAuth } from '~/components/modules'
@@ -21,13 +21,14 @@ const CenteredBox = ({ children, ...props }) => (
 )
 
 export const Signup = () => {
-  // const history = useHistory()
+  const navigate = useNavigate();
+
   const [, { login: setAuth }] = useAuth()
   const onSubmit = async (values) => {
     try {
       const res = await axios.post('http://localhost:9901/users', values)
       setAuth({ user: res.data })
-      // history.replace('/dashboard')
+      navigate('/dashboard')
 
     }
     catch (error) {

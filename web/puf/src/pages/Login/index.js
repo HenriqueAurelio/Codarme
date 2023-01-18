@@ -2,7 +2,7 @@ import * as React from 'react'
 import styled from 'styled-components'
 import axios from 'axios'
 
-
+import { useNavigate } from 'react-router-dom'
 import { Box, font, Logo } from '~/components'
 import { useAuth } from '~/components/modules'
 import { ReactComponent as Register } from './register.svg'
@@ -21,7 +21,7 @@ const CenteredBox = ({ children, ...props }) => (
 
 export const Login = () => {
   const [, { login: setAuth }] = useAuth()
-
+  const navigate = useNavigate()
   const onSubmit = async (values) => {
     try {
 
@@ -29,6 +29,7 @@ export const Login = () => {
         auth: values,
       })
       setAuth(result.data)
+      navigate()
     }
     catch (error) {
       console.log(error)

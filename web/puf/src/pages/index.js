@@ -13,7 +13,7 @@ export const App = () => {
     <Router>
       <Routes>
         {auth?.user ?
-          (<Route path="/" exact element={<Dashboard />
+          (<Route path="/dashboard" exact element={<Dashboard />
           } />) : (
             <>
               <Route path="/" exact element={<Login />} />
