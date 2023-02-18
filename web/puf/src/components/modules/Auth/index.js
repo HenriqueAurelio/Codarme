@@ -1,11 +1,15 @@
 import * as React from 'react'
 import { useState, useEffect, useContext, createContext } from 'react'
-
+import { useNavigate } from 'react-router-dom'
 const AuthContext = createContext([{}, () => ({})])
 
 export const useAuth = () => {
+  const navigate = useNavigate()
   const [state, setState] = useContext(AuthContext)
-  const logout = () => setState(false)
+  const logout = () => {
+    setState(false)
+    navigate('/')
+  }
 
   return [state, { login: setState, logout }]
 }
@@ -22,4 +26,3 @@ export const AuthProvider = ({ children }) => {
 
   return <AuthContext.Provider value={[state, setState]}>{children}</AuthContext.Provider>
 }
-
